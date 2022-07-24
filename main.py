@@ -16,7 +16,13 @@ group.add(ship)
 vel = 4
 
 while running == True:
-    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -35,6 +41,7 @@ while running == True:
     if keys[pygame.K_DOWN]:
         ship.moveDown(vel)
     
+    group.update()
     group.draw(screen)
     pygame.display.update()
     pygame.display.flip()
