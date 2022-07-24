@@ -13,13 +13,17 @@ class ShipCollection(pygame.sprite.Sprite):
         pass
 
     def moveRight(self, pixels):
-        self.rect.x += pixels
+        if (self.rect.x < 1560):
+            self.rect.x += pixels
 
     def moveLeft(self, pixels):
-        self.rect.x -= pixels
+        if (self.rect.x > 10):
+            self.rect.x -= pixels
 
-    def moveUp(self, speed):
-        self.rect.y -= speed * speed/10
+    def moveUp(self, pixels):
+        if (self.rect.y > 10):
+            self.rect.y -= pixels
 
-    def moveDown(self, speed):
-        self.rect.y += speed * speed/10
+    def moveDown(self, pixels):
+        if (self.rect.y < 850):
+            self.rect.y += pixels
