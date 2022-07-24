@@ -9,14 +9,11 @@ pygame.display.set_caption('Dodge The Asteroids')
 running = True
 background = pygame.image.load('sprites/background.jpg')
 
-width = 35
-height = 40
-
-vel = 10
-
 ship = ShipCollection((800, 450))
 group = pygame.sprite.RenderPlain()
 group.add(ship)
+
+vel = 4
 
 while running == True:
     
@@ -26,17 +23,17 @@ while running == True:
     
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_LEFT] and ship_x>0:
-        ship_x -= vel
+    if keys[pygame.K_LEFT]:
+        ship.moveLeft(vel/2)
 
-    if keys[pygame.K_RIGHT] and ship_x<500-width:
-        ship_x += vel
+    if keys[pygame.K_RIGHT]:
+        ship.moveRight(vel/2)
     
-    if keys[pygame.K_UP] and ship_y>0:
-        ship_y -= vel
+    if keys[pygame.K_UP]:
+        ship.moveUp(vel)
 
-    if keys[pygame.K_UP] and ship_y<500-width:
-        ship_y += vel
+    if keys[pygame.K_DOWN]:
+        ship.moveDown(vel)
     
     group.draw(screen)
     pygame.display.update()
