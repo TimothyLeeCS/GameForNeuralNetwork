@@ -13,9 +13,10 @@ ship = ShipCollection((800, 450))
 group = pygame.sprite.RenderPlain()
 group.add(ship)
 
-vel = 4
+vel = 10
 
 while running == True:
+    screen.blit(background, (0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -30,10 +31,10 @@ while running == True:
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_LEFT]:
-        ship.moveLeft(vel/2)
+        ship.moveLeft(vel)
 
     if keys[pygame.K_RIGHT]:
-        ship.moveRight(vel/2)
+        ship.moveRight(vel)
     
     if keys[pygame.K_UP]:
         ship.moveUp(vel)
@@ -42,8 +43,8 @@ while running == True:
         ship.moveDown(vel)
     
     group.update()
+    
     group.draw(screen)
-    pygame.display.update()
     pygame.display.flip()
 
 pygame.quit()
