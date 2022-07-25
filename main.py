@@ -15,7 +15,29 @@ group.add(ship)
 
 vel = 10
 
+clock = pygame.time.Clock()
+dt = 0
+game_time = 0
+
+label_font = pygame.font.SysFont("monospace", 18)
+
+def update_label(data, title, font, x, y, gameDisplay):
+    label = font.render('{} {}'.format(title, data), 1, (0,255,0))
+    gameDisplay.blit(label, (x, y))
+    return y
+
+def update_data_labels(gameDisplay, dt, game_time, font):
+    y_pos = 10
+    x_pos = 10
+    gap = 20
+    y_pos = update_label(round(1000/dt,2), 'FPS', font, x_pos, y_pos + gap, gameDisplay)
+    y_pos = update_label(round(game_time/1000,2),'Game time', font, x_pos, y_pos + gap, gameDisplay)
+
 while running == True:
+
+    dt = clock.tick(30)
+    game_time += dt
+
     screen.blit(background, (0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -42,9 +64,10 @@ while running == True:
     if keys[pygame.K_DOWN]:
         ship.moveDown(vel)
     
-    group.update()
     
+    group.update()
     group.draw(screen)
-    pygame.display.flip()
+    update_data_labels(screen, dt, game_time, label_font)
+    pygame.display.update()
 
 pygame.quit()
