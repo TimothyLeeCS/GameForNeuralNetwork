@@ -30,8 +30,7 @@ def update_data_labels(gameDisplay, dt, game_time, font):
     y_pos = 10
     x_pos = 10
     gap = 20
-    y_pos = update_label(round(1000/dt,2), 'FPS', font, x_pos, y_pos + gap, gameDisplay)
-    y_pos = update_label(round(game_time/1000,2),'Game time', font, x_pos, y_pos + gap, gameDisplay)
+    y_pos = update_label(round(game_time/1000,2),'Score', font, x_pos, y_pos + gap, gameDisplay)
 
 while running == True:
 
